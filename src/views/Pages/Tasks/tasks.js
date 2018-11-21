@@ -10,6 +10,7 @@ import {
   Row,
   TabContent,
   TabPane,
+  Form,
   FormGroup,
   Button,
   Input,
@@ -103,10 +104,26 @@ class Tasks extends Component {
                     <TabContent activeTab = {
                         this.state.activeTab
                     } >
-                        <TabPane tabId = "1" >
+                        <TabPane tabId="1" >
+                            <Form action="" method="post" className="form-horizontal">
+                                <FormGroup row>
+                                    <Col sm="7">
+                                        <Input type="text" placeholder="Search" />
+                                    </Col>
+                                    <Button type="submit" size="sm" color="primary" > < i className="fa fa-user" > </i>Search</Button>
+                                </FormGroup>
+                            </Form>
                             <TaskList />
                         </TabPane>
-                        <TabPane tabId = "2" >
+                        <TabPane tabId="2" >
+                            <Form action="" method="post" className="form-horizontal">
+                                <FormGroup row>
+                                    <Col sm="7">
+                                        <Input type="text" placeholder="Search" />
+                                    </Col>
+                                    <Button type="submit" size="sm" color="primary" > < i className="fa fa-user" > </i>Search</Button>
+                                </FormGroup>
+                            </Form>
                             <TaskList />
                         </TabPane>
                         <TabPane tabId="3" >

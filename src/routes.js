@@ -17,6 +17,11 @@ const Contacts = Loadable({
   loading: Loading,
 });
 
+const ContactDets = Loadable({
+  loader: () => import('./views/Pages/Contacts/contact_details'),
+  loading: Loading,
+});
+
 const Leads = Loadable({
   loader: () => import('./views/Pages/Leads/leads'),
   loading: Loading,
@@ -57,11 +62,37 @@ const Orders = Loadable({
   loading: Loading,
 });
 
-// https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
+const ProOrders = Loadable({
+  loader: () => import('./views/Pages/Orders/product_ord_details'),
+  loading: Loading,
+});
+
+const SerOrders = Loadable({
+  loader: () => import('./views/Pages/Orders/service_ord_details'),
+  loading: Loading,
+});
+
+const Quotes = Loadable({
+  loader: () => import('./views/Pages/Quotations/quotes'),
+  loading: Loading,
+});
+
+const RFQQuotes = Loadable({
+  loader: () => import('./views/Pages/Quotations/rfq_details'),
+  loading: Loading,
+});
+
+const TenQuotes = Loadable({
+  loader: () => import('./views/Pages/Quotations/tender_details'),
+  loading: Loading,
+});
+
 const routes = [
   { path: '/', exact: true, name: 'Home', component: DefaultLayout },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
-  { path: '/contacts', name: 'Contacts', component: Contacts },
+
+  { path: '/contacts', exact: true, name: 'Contacts', component: Contacts },
+  { path: '/contacts/details', name: 'Contact Details', component: ContactDets },
 
   { path: '/leads', exact: true, name: 'Leads', component: Leads },
   { path: '/leads/details', name: 'Lead Details', component: LeadDets },
@@ -74,6 +105,12 @@ const routes = [
   { path: '/accounts/details', name: 'Account Details', component: AccDetails },
 
   { path: '/orders', exact: true, name: 'Orders', component: Orders },
+  { path: '/orders/product_orders', name: 'Product Orders', component: ProOrders },
+  { path: '/orders/serv_orders', name: 'Service Orders', component: SerOrders },
+
+  { path: '/quotations', exact: true, name: 'Quotes', component: Quotes },
+  { path: '/quotations/rfq_details', name: 'Request For Quotation Details', component: RFQQuotes },
+  { path: '/quotations/tender_details', name: 'Quote For Tender Details', component: TenQuotes },
 ];
 
 export default routes;

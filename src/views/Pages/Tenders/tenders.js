@@ -10,20 +10,17 @@ import {
     Row,
     TabContent,
     TabPane,
-    Form,
     FormGroup,
     Button,
     Input,
     Label,
     Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Card, CardBody, CardHeader, ListGroup, ListGroupItem, Badge,
+    Form,
 }
     from 'reactstrap';
 import classnames from 'classnames';
-import ProductList from './products_list';
-import ServiceList from './services_list';
-import CreateOrder from '../Inputs/create_order';
 
-class Orders extends Component {
+class Tenders extends Component {
 
     constructor(props) {
         super(props);
@@ -70,7 +67,7 @@ class Orders extends Component {
                                             this.toggle('1');
                                         }
                                     } >
-                                    Products Ordered
+                                    Quotes
                                 </NavLink>
                             </NavItem>
                             <NavItem>
@@ -84,21 +81,7 @@ class Orders extends Component {
                                             this.toggle('2');
                                         }
                                     } >
-                                    Services Rendered
-                                </NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink className={
-                                    classnames({
-                                        active: this.state.activeTab === '3'
-                                    })
-                                }
-                                    onClick={
-                                        () => {
-                                            this.toggle('3');
-                                        }
-                                    } >
-                                    Create Order
+                                    Create Quote
                                 </NavLink>
                             </NavItem>
                         </Nav>
@@ -108,27 +91,15 @@ class Orders extends Component {
                             <TabPane tabId="1" >
                                 <Form action="" method="post" className="form-horizontal">
                                     <FormGroup row>
-                                        <Col sm="7">
+                                        <Col sm="5">
                                             <Input type="text" placeholder="Search" />
                                         </Col>
                                         <Button type="submit" size="sm" color="primary" > < i className="fa fa-user" > </i>Search</Button>
                                     </FormGroup>
                                 </Form>
-                                <ProductList />
                             </TabPane>
                             <TabPane tabId="2" >
-                                <Form action="" method="post" className="form-horizontal">
-                                    <FormGroup row>
-                                        <Col sm="7">
-                                            <Input type="text" placeholder="Search" />
-                                        </Col>
-                                        <Button type="submit" size="sm" color="primary" > < i className="fa fa-user" > </i>Search</Button>
-                                    </FormGroup>
-                                </Form>
-                                <ServiceList />
-                            </TabPane>
-                            <TabPane tabId="3" >
-                                <CreateOrder />
+                                
                             </TabPane>
                         </TabContent>
                     </Col>
@@ -138,4 +109,4 @@ class Orders extends Component {
     }
 }
 
-export default Orders;
+export default Tenders;

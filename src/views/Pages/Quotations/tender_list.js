@@ -4,21 +4,21 @@ import React, {
 import { Col, ListGroup, ListGroupItem, Row, } from 'reactstrap';
 
 
-class AccountList extends Component {
+class TenderList extends Component {
 
     constructor() {
         super();
         this.state = {
             list: [
-                { id: 1, acc: "Eskom-Medupi Account" },
-                { id: 2, acc: "Eskom-Tutuka Account" }
+                { id: 1, qft: "Sam", ref_number: "0000001" },
+                { id: 2, qft: "Sam", ref_number: "0000002" }
             ],
         }
     }
 
     render() {
         const view = this.state.list.map((item, index) =>
-            <ListGroupItem key={index} tag="a" href="#/accounts/details">{item.acc}
+            <ListGroupItem key={index} tag="a" href="#/quotations/tender_details">QFT {item.qft} - REF: {item.ref_number}
                 <div className="card-header-actions">
                     <a href="#" rel="noreferrer noopener" className="card-header-action">
                         <small className="text-muted">delete</small>
@@ -43,4 +43,4 @@ class AccountList extends Component {
     }
 }
 
-export default AccountList;
+export default TenderList;

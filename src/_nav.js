@@ -24,5 +24,9 @@ export default {
       name: 'Orders',
       url: '/orders'
     },
+    {
+      name: 'Quotations',
+      url: '/quotations'
+    },
   ],
 };

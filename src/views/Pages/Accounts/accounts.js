@@ -10,6 +10,7 @@ import {
   Row,
   TabContent,
   TabPane,
+  Form,
   FormGroup,
   Button,
   Input,
@@ -98,83 +99,33 @@ class Accounts extends Component {
                   Create Account
                 </NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink className={
-                  classnames({
-                    active: this.state.activeTab === '4'
-                  })
-                }
-                  onClick={
-                    () => {
-                      this.toggle('4');
-                    }
-                  } >
-                  Edit Account
-                </NavLink>
-              </NavItem>
             </Nav>
             <TabContent activeTab={
               this.state.activeTab
             } >
               <TabPane tabId="1" >
-
+                <Form action="" method="post" className="form-horizontal">
+                  <FormGroup row>
+                    <Col sm="7">
+                      <Input type="text" placeholder="Search" />
+                    </Col>
+                    <Button type="submit" size="sm" color="primary" > < i className="fa fa-user" > </i>Search</Button>
+                  </FormGroup>
+                </Form>
                 <AccountList />
-                        </TabPane>
-              <TabPane tabId="2" >
-                <AccountList />
-                        </TabPane>
-              <TabPane tabId="3" >
-                <Row>
-                  <Col sm="12">
-                    <FormGroup >
-                      <Label htmlFor="street" > New Account </Label>
-                      <Input type="text" id="street" placeholder="Enter account details" />
-                    </FormGroup>
-                    <Row>
-                      <Col sm="3">
-                        <Label htmlFor="street" > Company </Label>
-                        <Dropdown isOpen={this.state.dropdownOpen[0]} toggle={() => {
-                          this.toggleDrop(0);
-                        }}>
-                          <DropdownToggle caret>
-                            --Select--
-                          </DropdownToggle>
-                          <DropdownMenu>
-                            <DropdownItem>Company One</DropdownItem>
-                            <DropdownItem>Company Two</DropdownItem>
-                            <DropdownItem>Company Three</DropdownItem>
-                            <DropdownItem>Company Four</DropdownItem>
-                            <DropdownItem>Company Five</DropdownItem>
-                            <DropdownItem>Company Six</DropdownItem>
-                          </DropdownMenu>
-                        </Dropdown>
-                      </Col>
-                      <Col sm="3">
-                        <Label htmlFor="street" > Contact Person </Label>
-                        <Dropdown isOpen={this.state.dropdownOpen[1]} toggle={() => {
-                          this.toggleDrop(1);
-                        }}>
-                          <DropdownToggle caret>
-                            --Select--
-                                    </DropdownToggle>
-                          <DropdownMenu>
-                            <DropdownItem>Person One</DropdownItem>
-                            <DropdownItem>Person Two</DropdownItem>
-                            <DropdownItem>Person Three</DropdownItem>
-                          </DropdownMenu>
-                        </Dropdown>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <Button type="submit" size="sm" color="primary" > < i className="fa fa-user" > </i>Create</Button >
-                        <Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Reset</Button>
-                      </Col>
-                    </Row>
-                  </Col>
-                </Row>
               </TabPane>
-              <TabPane tabId="4" >
+              <TabPane tabId="2" >
+                <Form action="" method="post" className="form-horizontal">
+                  <FormGroup row>
+                    <Col sm="7">
+                      <Input type="text" placeholder="Search" />
+                    </Col>
+                    <Button type="submit" size="sm" color="primary" > < i className="fa fa-user" > </i>Search</Button>
+                  </FormGroup>
+                </Form>
+                <AccountList />
+              </TabPane>
+              <TabPane tabId="3" >
                 <Row>
                   <Col sm="12">
                     <FormGroup >

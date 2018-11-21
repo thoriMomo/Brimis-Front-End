@@ -1,7 +1,7 @@
 import React, {
     Component
 } from 'react';
-import { Col, Row, Card, CardBody, CardHeader, Badge, Button, Collapse, } from 'reactstrap';
+import { Col, Row, Card, CardBody, CardHeader, Badge, Button, Collapse, Label, FormGroup} from 'reactstrap';
 import TaskInput from '../Inputs/task_input'
 
 class LeadsDetails extends Component {
@@ -33,7 +33,17 @@ class LeadsDetails extends Component {
                             Lead Name
                         </CardHeader>
                         <CardBody>
-                            Info
+                            <Row>
+                                <Col sm="3">
+                                    <Label htmlFor="street" > Company </Label>
+                                </Col>
+                                <Col sm="3">
+                                    <Label htmlFor="street" > Contact Person </Label>
+                                </Col>
+                                <FormGroup >
+                                    <Label htmlFor="country" > Lead Description </Label>
+                                </FormGroup>
+                            </Row>
                             <div id="exampleAccordion" data-children=".item">
                                 <div className="item">
                                     <Button className="m-0 p-0" color="link" onClick={() => this.toggleCustom(0)} aria-expanded={this.state.custom[0]} aria-controls="exampleAccordion1">

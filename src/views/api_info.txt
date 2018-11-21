@@ -1,0 +1,316 @@
+class Client(models.Model):
+    name = models.CharField(max_length=256)
+
+    def __str__(self):
+        return self.name
+
+class Contact(models.Model):
+    firstName = models.CharField(max_length=256)
+    lastName = models.CharField(max_length=256)
+    mobileContact = models.CharField(max_length=256)
+    email = models.CharField(max_length=256)
+
+    def __str__(self):
+        return self.firstName +" "+ self.lastName
+
+class ClientContact(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
+    workContact = models.CharField(max_length=256)
+    designation = models.CharField(max_length=256)
+    
+    def __str__(self):
+        return self.client.name +": "+ self.contact.firstName +" "+ self.contact.lastName
+
+class Quote(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    createdBy = models.ForeignKey(User, on_delete=models.CASCADE)
+    rfq = models.CharField(max_length=256)
+    quoteType = models.CharField(max_length=256)
+    description = models.CharField(max_length=256)
+    dateReceived = models.DateTimeField(default=timezone.now)
+    deadline = models.DateField()
+    time = models.TimeField()
+    isSubmitted = models.BooleanField()
+    comments = models.CharField(max_length=156)
+
+    def __str__(self):
+        return self.rfq
+
+class QuotedProduct(models.Model):
+    quote = models.ForeignKey(Quote, on_delete=models.CASCADE)
+    product = models.CharField(max_length=256)
+    description = models.CharField(max_length=256)
+    quantity = models.IntegerField()
+    price = models.FloatField()
+
+    def __str__(self):
+        return self.quote.rfq +": "+ self.product
+
+class QuotedService(models.Model):
+    quote = models.ForeignKey(Quote, on_delete=models.CASCADE)
+    description = models.CharField(max_length=256)
+    price = models.FloatField()
+
+    def __str__(self):
+        return self.quote.rfq +": "+ str(self.id)
+
+class Order(models.Model):
+    orderNumber = models.CharField(max_length=256)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    createdBy = models.ForeignKey(User, on_delete=models.CASCADE)
+    contactPerson = models.ForeignKey(Contact, on_delete=models.CASCADE)
+    orderType = models.CharField(max_length=256)
+    dateCreated = models.DateTimeField(default=timezone.now)
+    dateDue = models.DateField()
+    time = models.TimeField()
+    isDelivered = models.BooleanField()
+    comments = models.CharField(max_length=256)
+
+    def __str__(self):
+        return self.orderNumber
+
+class OrderedProduct(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    product = models.CharField(max_length=256)
+    description = models.CharField(max_length=256)
+    quantity = models.IntegerField()
+    price = models.FloatField()
+    
+    def __str__(self):
+        return self.order.orderNumber +": "+ self.product
+
+class OrderedService(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    description = models.CharField(max_length=256)
+    price = models.FloatField()
+
+    def __str__(self):
+        return self.order.orderNumber
+
+class FeedBack(models.Model):
+    comments = models.CharField(max_length=256)
+    isSuccess = models.BooleanField(default=None, blank=True)
+    dateCreated = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return str(self.id)
+
+class Lead(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    createdBy = models.ForeignKey(User, on_delete=models.CASCADE)
+    dateCreated = models.DateTimeField(default=timezone.now)
+    clientContact = models.ForeignKey(Contact, on_delete=models.CASCADE)
+    feedback = models.ForeignKey(FeedBack, on_delete=models.CASCADE, blank=True, null=True)
+
+    def __str__(self):
+        return self.client.name
+
+class Task(models.Model):
+    taskType = models.CharField(max_length=256)
+    def __str__(self):
+        return self.taskType
+
+class UserTask(models.Model):
+    assignedTo = models.ForeignKey(User, on_delete=models.CASCADE)
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    dateCreated = models.DateTimeField(default=timezone.now)
+    dateDue = models.DateField()
+    time = models.TimeField(blank=True)
+    isCompleted = models.BooleanField()
+
+    def __str__(self):
+        return self.assignedTo.username +": "+ self.task.taskType
+
+class Tender(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    tenderID = models.CharField(max_length=256)
+    description = models.CharField(max_length=256)
+    ResponsiblePerson = models.ForeignKey(User, on_delete=models.CASCADE)
+    deadline = models.DateField()
+    time = models.TimeField()
+    enquiryDate = models.DateField()
+    clarificationDate = models.DateField()
+    buyerEnduser = models.CharField(max_length=256, blank=True)
+    trn = models.CharField(max_length=256)
+    tenderValue = models.CharField(max_length=256)
+    status = models.CharField(max_length=256)
+    isDelivered = models.BooleanField()
+    probability = models.CharField(max_length=256)
+    technicalFunctionality = models.CharField(max_length=256)
+    expectedOrderPlacement = models.CharField(max_length=256)
+    comments = models.CharField(max_length=256)
+
+    def __str__(self):
+        return self.tenderID
+
+
+
+BRIMIS Database Design
+
+Clients:
+Id
+Name
+
+Contacts
+Contact id
+First Name
+Last Name
+Mobile Contact
+Email
+
+Client Contacts
+Client (FK)
+Contact (FK)
+WorkContact
+Designation
+
+Quote:
+RFQ 
+Client (FK)
+Created by (FK)
+Quote Type: String
+Buyer end user?
+Description
+Date Received: Datetime
+Quotation Deadline: Datetime
+isSubmitted: bool
+Comments
+
+Quoted Service:
+Order (FK)
+Description
+Price
+
+Quoted Products:
+Order (PK)
+Product: String
+Description
+Quantity
+Price
+
+Orders:
+Order Number
+Client (FK)
+CreatedBy (FK) : user
+Contact Person (FK)
+Order Type: String
+Date Created
+Date Due
+Time
+isDelivered: bool
+Comments
+
+Ordered Service:
+Order (FK)
+Description
+Price
+
+Ordered Products:
+Order (PK)
+Product: String
+Description
+Quantity
+Price
+
+Leads:
+CreatedBy (FK): user
+Date Created: Datetime
+Client (FK)
+Client Contact (FK)
+FeedBack {
+Comment
+isSuccess: bool
+Date Created
+}
+
+Tasks:
+Type
+
+
+
+
+
+
+
+User Tasks:
+Assigned To (FK): user
+Task (FK)
+Client (FK)
+Date Created
+Date Due
+isCompleted : Bool
+
+Tenders:
+Client (FK)
+Tender ID
+Description
+Responsible Person
+Closing Date: Datetime
+Enquiry Date
+Clarification Date
+Buyer: nullable
+TRN (Tender Reference Number)
+Estimated Tender Value: nullable
+Actual Tender Value: nullable
+Status?: nullable
+isSubmitted: nullable
+Probability: nullable
+Technical Functionality: nullable
+Expected Order Placement: Date (nullable)
+Comments: nullable
+Boolean??? //last column in spreadsheet
+
+User Type:
+ID (PK)
+Type
+
+Users:
+Username
+Password
+First Name
+Last Name
+Email
+Meta {
+Designation: User Type
+Access Level
+}
+
+
+URLS
+GET crm/clients/ 
+POST crm/clients/create/
+GET crm/quotes/
+POST crm/quotes/create/
+PUT crm/quotes/update/
+GET crm/orders/
+POST crm/orders/create/
+PUT crm/orders/update/
+GET crm/leads/
+POST crm/leads/create/
+PUT crm/leads/update/
+POST crm/feedbacks/
+GET crm/tenders/
+POST crm/tenders/create/
+PUT crm/tenders/update/
+
+GET crm/contacts/
+POST crm/contacts/create/
+PUT crm/contacts/update/
+GET crm/clientcontacts/
+POST crm/clientcontacts/create/
+PUT crm/clientcontacts/update/
+GET crm/tasks/
+POST crm/tasks/create/
+GET crm/usertasks/
+POST crm/usertasks/create/
+PUT crm/usertasks/update/
+GET crm/agents/
+POST crm/agents/create
+PUT crm/agents/update/
+
+
+Create users
+Update & delete
+Search/filtering

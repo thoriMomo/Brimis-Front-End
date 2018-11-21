@@ -12,7 +12,6 @@ import {
     Dropdown, DropdownItem, DropdownMenu, DropdownToggle, 
 }
     from 'reactstrap';
-import classnames from 'classnames';
 
 class TaskInput extends Component {
 
@@ -43,40 +42,44 @@ class TaskInput extends Component {
         });
     }
 
+    createSelectedItems() {
+
+    }
+
     render() {
 
         return (
             <div>
                 <Row>
                     <Col>
-                                    <FormGroup >
-                                        <Label htmlFor="street" > New Task </Label>
-                                        <Input type="text" id="street" placeholder="Enter task details" />
-                                    </FormGroup>
-                                    <Row>
-                                        <Col sm="3">
-                                            <Label htmlFor="street" > Due: </Label>
-                                            <Dropdown isOpen={this.state.dropdownOpen[0]} toggle={() => {
-                                                this.toggleDrop(0);
-                                            }}>
-                                                <DropdownToggle caret>
-                                                    --Select--
-                                                </DropdownToggle>
-                                                <DropdownMenu>
-                                                    <DropdownItem>As Soon As Possible</DropdownItem>
-                                                    <DropdownItem>Today</DropdownItem>
-                                                    <DropdownItem>Tomorrow</DropdownItem>
-                                                    <DropdownItem>This Week</DropdownItem>
-                                                    <DropdownItem>Next Week</DropdownItem>
-                                                    <DropdownItem>Sometime Later</DropdownItem>
-                                                </DropdownMenu>
-                                            </Dropdown>
-                                        </Col>
-                                        <Col sm="3">
-                                            <Label htmlFor="street" > Category: </Label>
-                                            <Dropdown isOpen={this.state.dropdownOpen[1]} toggle={() => {
-                                                this.toggleDrop(1);
-                                            }}>
+                        <FormGroup >
+                            <Label htmlFor="task" > New Task </Label>
+                            <Input type="text" id="task" placeholder="Enter task details" />
+                        </FormGroup>
+                        <Row>
+                            <Col sm="3">
+                                <Label htmlFor="due" > Due: </Label>
+                                <Dropdown isOpen={this.state.dropdownOpen[0]} toggle={() => {
+                                    this.toggleDrop(0);
+                                }}>
+                                    <DropdownToggle caret>
+                                        --Select--
+                                    </DropdownToggle>
+                                    <DropdownMenu>
+                                        <DropdownItem>As Soon As Possible</DropdownItem>
+                                        <DropdownItem>Today</DropdownItem>
+                                        <DropdownItem>Tomorrow</DropdownItem>
+                                        <DropdownItem>This Week</DropdownItem>
+                                        <DropdownItem>Next Week</DropdownItem>
+                                        <DropdownItem>Sometime Later</DropdownItem>
+                                    </DropdownMenu>
+                                </Dropdown>
+                            </Col>
+                            <Col sm="3">
+                                <Label htmlFor="category" > Category: </Label>
+                                <Dropdown isOpen={this.state.dropdownOpen[1]} toggle={() => {
+                                    this.toggleDrop(1);
+                                }}>
                                     <DropdownToggle caret>
                                         --Select--
                                     </DropdownToggle>
