@@ -9,11 +9,28 @@ class ServiceList extends Component {
     constructor() {
         super();
         this.state = {
-            list: [
-                { id: 1, order: "Sam", ref_number: "0000001" },
-                { id: 2, order: "Sam", ref_number: "0000002" }
-            ],
+            list: [],
         }
+    }
+
+    componentDidMount() {
+        this.fetchPost();
+    }
+
+    fetchPost() {
+
+        fetch('https://brimis-crm-backend.herokuapp.com/crm/orders/')
+            .then(res => {
+                return res.json();
+            })
+            .then(data => {
+                this.setState({
+                    list: data
+                });
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 
     render() {

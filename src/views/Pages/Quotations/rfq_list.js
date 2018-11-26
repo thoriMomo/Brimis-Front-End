@@ -9,16 +9,33 @@ class RfqList extends Component {
     constructor() {
         super();
         this.state = {
-            list: [
-                { id: 1, rfq: "Sam", ref_number: "0000001" },
-                { id: 2, rfq: "Sam", ref_number: "0000002" }
-            ],
+            list: [],
         }
     }
 
+    componentDidMount() {
+        this.fetchPost();
+    }
+
+    fetchPost() {
+
+        fetch('https://brimis-crm-backend.herokuapp.com/crm/quotes/')
+            .then(res => {
+                return res.json();
+            })
+            .then(data => {
+                this.setState({
+                    list: data
+                });
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+    
     render() {
         const view = this.state.list.map((item, index) =>
-            <ListGroupItem key={index} tag="a" href="#/quotations/rfq_details">RFQ {item.rfq} - REF: {item.ref_number}
+            <ListGroupItem key={index} tag="a" href="#/quotations/rfq_details">RFQ {item.client} - REF: {item.rfq}
                 <div className="card-header-actions">
                     <a href="#" rel="noreferrer noopener" className="card-header-action">
                         <small className="text-muted">delete</small>

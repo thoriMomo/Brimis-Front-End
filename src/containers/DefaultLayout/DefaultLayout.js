@@ -23,6 +23,21 @@ import DefaultFooter from './DefaultFooter';
 import DefaultHeader from './DefaultHeader';
 
 class DefaultLayout extends Component {
+
+  constructor() {
+    super();
+    this.handleData = this.handleData.bind(this);
+    this.state = {
+      fromChild: ''
+    };
+  }
+
+  handleData(data) {
+    this.setState({
+      fromChild: data
+    });
+  }
+
   render() {
     return (
       <div className="app">
@@ -42,7 +57,7 @@ class DefaultLayout extends Component {
               <Switch>
                 {routes.map((route, idx) => {
                     return route.component ? (<Route key={idx} path={route.path} exact={route.exact} name={route.name} render={props => (
-                        <route.component {...props} />
+                        <route.component {...props} handlerFromParent={this.handleData}/>
                       )} />)
                       : (null);
                   },
