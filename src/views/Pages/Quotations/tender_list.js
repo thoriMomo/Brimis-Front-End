@@ -9,16 +9,33 @@ class TenderList extends Component {
     constructor() {
         super();
         this.state = {
-            list: [
-                { id: 1, qft: "Sam", ref_number: "0000001" },
-                { id: 2, qft: "Sam", ref_number: "0000002" }
-            ],
+            list: [],
         }
     }
 
+    componentDidMount() {
+        this.fetchPost();
+    }
+
+    fetchPost() {
+
+        fetch('https://brimis-crm-backend.herokuapp.com/crm/tenders/')
+            .then(res => {
+                return res.json();
+            })
+            .then(data => {
+                this.setState({
+                    list: data
+                });
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+    
     render() {
         const view = this.state.list.map((item, index) =>
-            <ListGroupItem key={index} tag="a" href="#/quotations/tender_details">QFT {item.qft} - REF: {item.ref_number}
+            <ListGroupItem key={index} tag="a" href="#/quotations/tender_details">QFT {item.client} - REF: {item.tenderID}
                 <div className="card-header-actions">
                     <a href="#" rel="noreferrer noopener" className="card-header-action">
                         <small className="text-muted">delete</small>

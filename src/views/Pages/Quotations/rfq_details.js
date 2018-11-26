@@ -6,7 +6,7 @@ import {
     Row,
     FormGroup,
     Label,
-    Card, CardBody, CardHeader,
+    Card, CardBody, CardHeader, Input
 }
     from 'reactstrap';
 
@@ -42,40 +42,52 @@ class GeneralQuo extends Component {
 
         return (
             <Row>
-                <Col><Card>
-                    <CardHeader>
-                        RFQ - REF: 00000000 Details
-                        </CardHeader>
-                    <CardBody>
+                <Col>
+                    <Input type="text" id="country" placeholder="RFQ - REF:" />
                     <Row>
-                        <Col sm="3">
+                        <Col sm="4">
                             <Label htmlFor="street" > Client </Label>
+                            <Input type="text" id="country" placeholder="Enter Description" />
                         </Col>
-                        <Col sm="3">
+                        <Col sm="4">
                             <Label htmlFor="street" > Contact Person </Label>
+                            <Input type="text" id="country" placeholder="Enter Description" />
+                        </Col>
+                        <Col sm="4">
+                            <Label htmlFor="street" > Quote Type </Label>
+                            <Input type="text" id="country" placeholder="Enter Description" />
                         </Col>
                     </Row>
-                    <FormGroup >
-                        <Label htmlFor="country" > Description </Label>
-                    </FormGroup>
                     <Row>
-                        <Col sm="3">
-                            <Label htmlFor="street" > Quotation Deadline </Label>
-                        </Col>
-                        <Col sm="3">
-                            <FormGroup>
-                                <Label htmlFor="time" > Time </Label>
+                        <Col sm="12">
+                            <FormGroup >
+                                <Label htmlFor="country" > Description </Label>
+                                <Input type="text" id="country" placeholder="Enter Description" />
                             </FormGroup>
                         </Col>
-                        <Col sm="3">
+                    </Row>
+                    <Row>
+                        <Col sm="4">
+                            <FormGroup>
+                                <Label htmlFor="deadline" > Deadline </Label>
+                                <Input type="text" id="deadline" placeholder="DD/MM/YYYY" />
+                            </FormGroup>
+                        </Col>
+                        <Col sm="4">
+                            <FormGroup>
+                                <Label htmlFor="time" > Time </Label>
+                                <Input type="text" id="time" placeholder="00h00" />
+                            </FormGroup>
+                        </Col>
+                        <Col sm="4">
                             <Label htmlFor="street" > Submitted </Label>
+                            <Input type="text" id="country" placeholder="Enter Description" />
                         </Col>
                     </Row>
                     <FormGroup >
                         <Label htmlFor="country" > Comments </Label>
+                        <Input type="text" id="country" placeholder="Enter Comment" />
                     </FormGroup>
-                    </CardBody>
-                    </Card>
                 </Col>
             </Row>
         );

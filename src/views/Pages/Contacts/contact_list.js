@@ -2,19 +2,31 @@ import React, {
     Component
 } from 'react';
 import { Col, ListGroup, ListGroupItem, Row, } from 'reactstrap';
-import ContactDetails from './contact_details';
+import { connect } from "react-redux";
+import { addArticle } from "../../redux/actions/index"
 
+const mapDispatchToProps = dispatch => {
+    return {
+        addArticle: article => dispatch(addArticle(article))
+    };
+};
 
 class ContactList extends Component {
 
     constructor(props) {
         super(props);
 
-        this.passValue = this.passValue.bind(this);
         this.state = {
             list: [],
-            id_value: "",
+            firstName: "",
         }
+    }
+
+    update(firstName, lastName, mobileContact, email) {
+        console.log(firstName);
+        const contactID = 100;
+        this.props.addArticle({contactID, firstName, lastName, mobileContact, email});
+        this.setState({firstName: firstName});
     }
 
     componentDidMount() {
@@ -37,13 +49,9 @@ class ContactList extends Component {
         });
     }
 
-    passValue(id_val) {
-        this.id_value = id_val;
-    }
-
     render() {
         const view = this.state.list.map((item, index_num) => 
-            <ListGroupItem key={index_num} tag="a" href="#/contacts/details" onChange={() => this.props.addValue(item.index_num)}> {item.firstName} {item.lastName}
+            <ListGroupItem key={index_num} tag="a" href="#/contacts/details" onClick={() => this.update(item.firstName, item.lastName, item.mobileContact, item.email)}> {item.firstName} {item.lastName}
                 <div className="card-header-actions">
                     <a href="#" rel="noreferrer noopener" className="card-header-action">
                     <small className="text-muted">delete</small>
@@ -67,5 +75,7 @@ class ContactList extends Component {
         );
     }
 }
+
+const List = connect(null, mapDispatchToProps)(ContactList)
           
-export default ContactList;
+export default List;

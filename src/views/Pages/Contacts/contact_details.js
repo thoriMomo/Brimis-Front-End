@@ -6,17 +6,19 @@ import {
     Form,
     FormGroup,
     Input,
-    Label, ListGroup, ListGroupItem, } from 'reactstrap';
+    Label, ListGroup, ListGroupItem,
+} from 'reactstrap';
+import Details from "./contact_dets_exclusive";
 
 class ContactDetails extends Component {
 
     constructor(props) {
         super(props);
         this.toggleCustom = this.toggleCustom.bind(this);
-        this.addValue = this.addValue.bind(this);
+
         this.state = {
             custom: [false, false],
-            id_text: "",
+            list: [],
         };
     }
 
@@ -30,55 +32,11 @@ class ContactDetails extends Component {
         });
     }
 
-    addValue(add_id_value) {
-        this.setState({
-            id_text: add_id_value,
-        })
-    }
-
     render() {
         return (
             <Row>
-                <Label htmlFor="company" > {this.state.id_text} </Label>
                 <Col sm="8">
-                    <Card>
-                        <CardBody>
-                            <FormGroup row className="my-0" >
-                                <Col xs="6">
-                                    < FormGroup >
-                                        
-                                        <Label htmlFor="company" > Name </Label>
-                                    </FormGroup>
-                                </Col>
-                                <Col xs="6">
-                                    <FormGroup >
-                                        <Label htmlFor="vat" > Surname </Label>
-                                    </FormGroup>
-                                </Col>
-                            </FormGroup>
-                            <FormGroup row className="my-0" >
-                                <Col xs="6" >
-                                    <FormGroup >
-                                        <Label htmlFor="city" > Email Address </Label>
-                                    </FormGroup>
-                                </Col>
-                                <Col xs="6" >
-                                    <FormGroup >
-                                        <Label htmlFor="postal-code" > Phone Number </Label>
-                                    </FormGroup>
-                                </Col>
-                            </FormGroup>
-                            <FormGroup >
-                                <Label htmlFor="street" > Company </Label>
-                            </FormGroup>
-                            <FormGroup >
-                                <Label htmlFor="country" > Work Position </Label>
-                            </FormGroup>
-                            <FormGroup >
-                                <Label htmlFor="country" > Comments </Label>
-                            </FormGroup>
-                        </CardBody>
-                    </Card>
+                    <Details />
                 </Col>
                 <Col sm="4">
                     <Card>

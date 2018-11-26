@@ -12,6 +12,8 @@ import {
 }
     from 'reactstrap';
 import ProductTables from './product_table';
+import Select from 'react-select';
+import axios from "axios";
 
 class ProductSale extends Component {
 
@@ -22,7 +24,63 @@ class ProductSale extends Component {
         this.state = {
             activeTab: '1',
             dropdownOpen: new Array(6).fill(false),
+            selectedClient: null,
+            selectedPerson: null,
+            clientList: [{
+                value: "",
+                label: "",
+            }],
+            contactList: [{
+                value: "",
+                label: "",
+            }],
         };
+    }
+
+    handlePerson = (selectedPerson) => {
+        this.setState({ selectedPerson });
+        console.log(`Option selected:`, selectedPerson);
+    }
+
+    handleClient = (selectedClient) => {
+        this.setState({ selectedClient });
+        console.log(`Option selected:`, selectedClient);
+    }
+
+    componentDidMount() {
+        this.fetchPost();
+    }
+
+    fetchPost() {
+        let fetchList = [];
+        fetch('https://brimis-crm-backend.herokuapp.com/crm/clientcontacts/')
+            .then(res => {
+                console.log("fetched create task clients");
+                return res.json();
+            })
+            .then(data => {
+                fetchList = data.map((listItem) => {
+                    return listItem
+                })
+            })
+            .catch(err => {
+                console.log(err);
+            })
+            .then(() => {
+                let listArr = [{ value: "", label: "" },];
+                let listCon = [{ value: "", label: "" },];
+
+                for (var i = 0; i < fetchList.length; i++) {
+                    listArr[i] = { value: fetchList[i].client["name"], label: fetchList[i].client["name"] };
+                    listCon[i] = { value: fetchList[i].contact.firstName, label: fetchList[i].contact.firstName, }
+                    console.log(listArr[i]["value"]);
+                }
+                this.setState({
+                    clientlist: [...listArr],
+                    contactList: [...listCon],
+
+                });
+            });
     }
 
     toggle(tab) {
@@ -42,6 +100,7 @@ class ProductSale extends Component {
         });
     }
     render() {
+        const { selectedPerson, selectedClient, } = this.state;
 
         return (
             <Row>
@@ -49,36 +108,19 @@ class ProductSale extends Component {
                     <Row>
                         <Col sm="3">
                             <Label htmlFor="street" > Company </Label>
-                            <Dropdown isOpen={this.state.dropdownOpen[0]} toggle={() => {
-                                this.toggleDrop(0);
-                            }}>
-                                <DropdownToggle caret>
-                                    --Select--
-                                    </DropdownToggle>
-                                <DropdownMenu>
-                                    <DropdownItem>Company One</DropdownItem>
-                                    <DropdownItem>Company Two</DropdownItem>
-                                    <DropdownItem>Company Three</DropdownItem>
-                                    <DropdownItem>Company Four</DropdownItem>
-                                    <DropdownItem>Company Five</DropdownItem>
-                                    <DropdownItem>Company Six</DropdownItem>
-                                </DropdownMenu>
-                            </Dropdown>
+                            <Select
+                                value={selectedClient}
+                                onChange={this.handleClient}
+                                options={this.state.clientlist}
+                            />
                         </Col>
                         <Col sm="3">
                             <Label htmlFor="street" > Contact Person </Label>
-                            <Dropdown isOpen={this.state.dropdownOpen[1]} toggle={() => {
-                                this.toggleDrop(1);
-                            }}>
-                                <DropdownToggle caret>
-                                    --Select--
-                                    </DropdownToggle>
-                                <DropdownMenu>
-                                    <DropdownItem>Person One</DropdownItem>
-                                    <DropdownItem>Person Two</DropdownItem>
-                                    <DropdownItem>Person Three</DropdownItem>
-                                </DropdownMenu>
-                            </Dropdown>
+                            <Select
+                                value={selectedPerson}
+                                onChange={this.handlePerson}
+                                options={this.state.contactList}
+                            />
                         </Col>
                     </Row>
                     <Row>

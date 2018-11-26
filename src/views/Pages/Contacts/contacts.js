@@ -27,9 +27,28 @@ class Contacts extends Component {
         super(props);
 
         this.toggle = this.toggle.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.submitHandler = this.submitHandler.bind(this);
         this.state = {
             activeTab: '1',
+            name_got: "",
         };
+    }
+
+    submitHandler(evt){
+        evt.preventDefault();
+
+        this.props.handlerFromParent(this.state.name_got);
+
+        this.setState({
+            name_got: ''
+        });
+    }
+
+    handleChange() {
+        this.setState({
+            name_got: "Eureka!"
+        })
     }
 
     toggle(tab) {
@@ -38,6 +57,11 @@ class Contacts extends Component {
                 activeTab: tab,
             });
         }
+    }
+
+    onUpdate = (name) => {
+        //this.name_got= name,
+        console.log("contact: " + this.name_got);
     }
 
   render() {
@@ -88,7 +112,7 @@ class Contacts extends Component {
                                     <Button type = "submit" size = "sm" color = "primary" > < i className = "fa fa-user" > </i>Search</Button>
                                 </FormGroup>
                             </Form>
-                            <ContactList />
+                            <ContactList onUpdate={this.onUpdate}/>
                         </TabPane>
                         <TabPane tabId="2" >
                             <Col sm = "12">

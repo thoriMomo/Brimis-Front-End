@@ -20,6 +20,13 @@ import {
   from 'reactstrap';
 import classnames from 'classnames';
 import AccountList from './account_list'
+import Select from 'react-select';
+
+const options = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' }
+];
 
 class Accounts extends Component {
 
@@ -30,7 +37,13 @@ class Accounts extends Component {
     this.state = {
       activeTab: '1',
       dropdownOpen: new Array(6).fill(false),
+      selectedOption: null,
     };
+  }
+
+  handleChange = (selectedOption) => {
+    this.setState({ selectedOption });
+    console.log(`Option selected:`, selectedOption);
   }
 
   toggle(tab) {
@@ -51,7 +64,7 @@ class Accounts extends Component {
   }
 
   render() {
-
+    const { selectedOption } = this.state;
     return (
       <div>
         <Row>
@@ -133,38 +146,21 @@ class Accounts extends Component {
                       <Input type="text" id="street" placeholder="Enter account details" />
                     </FormGroup>
                     <Row>
-                      <Col sm="3">
+                      <Col sm="4">
                         <Label htmlFor="street" > Company </Label>
-                        <Dropdown isOpen={this.state.dropdownOpen[0]} toggle={() => {
-                          this.toggleDrop(0);
-                        }}>
-                          <DropdownToggle caret>
-                            --Select--
-                          </DropdownToggle>
-                          <DropdownMenu>
-                            <DropdownItem>Company One</DropdownItem>
-                            <DropdownItem>Company Two</DropdownItem>
-                            <DropdownItem>Company Three</DropdownItem>
-                            <DropdownItem>Company Four</DropdownItem>
-                            <DropdownItem>Company Five</DropdownItem>
-                            <DropdownItem>Company Six</DropdownItem>
-                          </DropdownMenu>
-                        </Dropdown>
+                        <Select
+                          value={selectedOption}
+                          onChange={this.handleChange}
+                          options={options}
+                        />
                       </Col>
-                      <Col sm="3">
+                      <Col sm="4">
                         <Label htmlFor="street" > Contact Person </Label>
-                        <Dropdown isOpen={this.state.dropdownOpen[1]} toggle={() => {
-                          this.toggleDrop(1);
-                        }}>
-                          <DropdownToggle caret>
-                            --Select--
-                                    </DropdownToggle>
-                          <DropdownMenu>
-                            <DropdownItem>Person One</DropdownItem>
-                            <DropdownItem>Person Two</DropdownItem>
-                            <DropdownItem>Person Three</DropdownItem>
-                          </DropdownMenu>
-                        </Dropdown>
+                        <Select
+                          value={selectedOption}
+                          onChange={this.handleChange}
+                          options={options}
+                        />
                       </Col>
                     </Row>
                     <Row>

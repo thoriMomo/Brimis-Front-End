@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import {
     Badge, Col, Row, Table,
-    Dropdown, DropdownItem, DropdownMenu, DropdownToggle, } from 'reactstrap';
+    Dropdown, DropdownItem, DropdownMenu, DropdownToggle, }
+    from 'reactstrap';
+import Select from 'react-select';
+
+const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+];
 
 class ProductTables extends Component {
 
@@ -12,7 +20,13 @@ class ProductTables extends Component {
         this.state = {
             activeTab: '1',
             dropdownOpen: new Array(6).fill(false),
+            selectedOption: null,
         };
+    }
+
+    handleChange = (selectedOption) => {
+        this.setState({ selectedOption });
+        console.log(`Option selected:`, selectedOption);
     }
 
     toggle(tab) {
@@ -33,6 +47,7 @@ class ProductTables extends Component {
     }
 
     render() {
+        const { selectedOption } = this.state;
         return (
             <div className="animated fadeIn">
                
@@ -48,98 +63,48 @@ class ProductTables extends Component {
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <Dropdown isOpen={this.state.dropdownOpen[0]} toggle={() => {
-                                                    this.toggleDrop(0);
-                                                }}>
-                                                    <DropdownToggle caret>
-                                                        --Select--
-                                                    </DropdownToggle>
-                                                    <DropdownMenu>
-                                                        <DropdownItem>Company One</DropdownItem>
-                                                        <DropdownItem>Company Two</DropdownItem>
-                                                        <DropdownItem>Company Three</DropdownItem>
-                                                        <DropdownItem>Company Four</DropdownItem>
-                                                        <DropdownItem>Company Five</DropdownItem>
-                                                        <DropdownItem>Company Six</DropdownItem>
-                                                    </DropdownMenu>
-                                                </Dropdown>
+                                <Select
+                                    value={selectedOption}
+                                    onChange={this.handleChange}
+                                    options={options}
+                                />
                                             </td>
                                             <td>0</td>
                                             <td>R0.00</td>
                                         </tr>
                                         <tr>
-                            <td><Dropdown isOpen={this.state.dropdownOpen[0]} toggle={() => {
-                                this.toggleDrop(0);
-                            }}>
-                                <DropdownToggle caret>
-                                    --Select--
-                                                    </DropdownToggle>
-                                <DropdownMenu>
-                                    <DropdownItem>Company One</DropdownItem>
-                                    <DropdownItem>Company Two</DropdownItem>
-                                    <DropdownItem>Company Three</DropdownItem>
-                                    <DropdownItem>Company Four</DropdownItem>
-                                    <DropdownItem>Company Five</DropdownItem>
-                                    <DropdownItem>Company Six</DropdownItem>
-                                </DropdownMenu>
-                            </Dropdown></td>
+                            <td><Select
+                                value={selectedOption}
+                                onChange={this.handleChange}
+                                options={options}
+                            /></td>
                                             <td>0</td>
                                             <td>R0.00</td>
                                         </tr>
                                         <tr>
-                            <td><Dropdown isOpen={this.state.dropdownOpen[0]} toggle={() => {
-                                this.toggleDrop(0);
-                            }}>
-                                <DropdownToggle caret>
-                                    --Select--
-                                                    </DropdownToggle>
-                                <DropdownMenu>
-                                    <DropdownItem>Company One</DropdownItem>
-                                    <DropdownItem>Company Two</DropdownItem>
-                                    <DropdownItem>Company Three</DropdownItem>
-                                    <DropdownItem>Company Four</DropdownItem>
-                                    <DropdownItem>Company Five</DropdownItem>
-                                    <DropdownItem>Company Six</DropdownItem>
-                                </DropdownMenu>
-                            </Dropdown></td>
+                            <td><Select
+                                value={selectedOption}
+                                onChange={this.handleChange}
+                                options={options}
+                            /></td>
                                             <td>0</td>
                                             <td>R0.00</td>
                                         </tr>
                                         <tr>
-                            <td><Dropdown isOpen={this.state.dropdownOpen[0]} toggle={() => {
-                                this.toggleDrop(0);
-                            }}>
-                                <DropdownToggle caret>
-                                    --Select--
-                                                    </DropdownToggle>
-                                <DropdownMenu>
-                                    <DropdownItem>Company One</DropdownItem>
-                                    <DropdownItem>Company Two</DropdownItem>
-                                    <DropdownItem>Company Three</DropdownItem>
-                                    <DropdownItem>Company Four</DropdownItem>
-                                    <DropdownItem>Company Five</DropdownItem>
-                                    <DropdownItem>Company Six</DropdownItem>
-                                </DropdownMenu>
-                            </Dropdown></td>
+                            <td><Select
+                                value={selectedOption}
+                                onChange={this.handleChange}
+                                options={options}
+                            /></td>
                                             <td>0</td>
                                             <td>R0.00</td>
                                     </tr>
                                 <tr>
-                            <td><Dropdown isOpen={this.state.dropdownOpen[0]} toggle={() => {
-                                this.toggleDrop(0);
-                            }}>
-                                <DropdownToggle caret>
-                                    --Select--
-                                                    </DropdownToggle>
-                                <DropdownMenu>
-                                    <DropdownItem>Company One</DropdownItem>
-                                    <DropdownItem>Company Two</DropdownItem>
-                                    <DropdownItem>Company Three</DropdownItem>
-                                    <DropdownItem>Company Four</DropdownItem>
-                                    <DropdownItem>Company Five</DropdownItem>
-                                    <DropdownItem>Company Six</DropdownItem>
-                                </DropdownMenu>
-                            </Dropdown></td>
+                            <td><Select
+                                value={selectedOption}
+                                onChange={this.handleChange}
+                                options={options}
+                            /></td>
                                     <td>0</td>
                                     <td>R0.00</td>
                                 </tr>

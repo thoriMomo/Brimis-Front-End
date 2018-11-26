@@ -6,7 +6,7 @@ import {
     Row,
     FormGroup,
     Label,
-    Card, CardBody, CardHeader,
+    Card, CardBody, CardHeader, Input,
 }
     from 'reactstrap';
 
@@ -43,75 +43,97 @@ class TenderQuo extends Component {
         return (
             <Row>
                 <Col>
-                    <Card>
-                        <CardHeader>
-                            QFT - REF: 00000000 Details
-                        </CardHeader>
-                        <CardBody>
                     <Row>
-                        <Col sm="3">
-                            <Label htmlFor="street" > Days To Submission </Label>
-                        </Col>
-                        <Col sm="3">
+                        <Col>
+                            <Input type="text" id="country" placeholder="QFT - REF:" />
                             <Label htmlFor="street" > Client </Label>
+                            <Input type="text" id="description" placeholder="Enter client" />
                         </Col>
                     </Row>
                     <FormGroup >
-                        <Label htmlFor="country" > Description </Label>
+                        <Label htmlFor="description" > Description </Label>
+                        <Input type="text" id="description" placeholder="Enter Description" />
                     </FormGroup>
                     <Row>
                         <Col sm="3">
-                            <Label htmlFor="street" >Responsible Person </Label>
-                        </Col>
-                        <Col sm="3">
                             <FormGroup>
-                                <Label htmlFor="time" > Closing Date </Label>
+                                <Label htmlFor="resp_person" >Responsible Person </Label>
+                                <Input type="text" id="resp_person" placeholder="Who is responsible?" />
                             </FormGroup>
                         </Col>
                         <Col sm="3">
-                            <Label htmlFor="street" > Time </Label>
+                            <FormGroup>
+                                <Label htmlFor="deadline" > Deadline </Label>
+                                <Input type="text" id="deadline" placeholder="DD/MM/YYYY" />
+                            </FormGroup>
                         </Col>
                         <Col sm="3">
-                            <Label htmlFor="street" > Enquiry Date </Label>
+                            <FormGroup>
+                                <Label htmlFor="time" > Time </Label>
+                                <Input type="text" id="time" placeholder="00h00" />
+                            </FormGroup>
+                        </Col>
+                        <Col sm="3">
+                            <FormGroup>
+                                <Label htmlFor="enq_date" > Enquiry Date </Label>
+                                <Input type="text" id="enq_date" placeholder="DD/MM/YYYY" />
+                            </FormGroup>
                         </Col>
                     </Row>
                     <Row>
                         <Col sm="3">
-                            <Label htmlFor="street" >Clarification Date </Label>
-                        </Col>
-                        <Col sm="3">
                             <FormGroup>
-                                <Label htmlFor="time" > Tender Ref. Number </Label>
+                                <Label htmlFor="clarification" >Clarification Date </Label>
+                                <Input type="text" id="clarification" placeholder="DD/MM/YYYY" />
                             </FormGroup>
                         </Col>
                         <Col sm="3">
-                            <Label htmlFor="street" > Estimated Tender Value </Label>
+                            <FormGroup>
+                                <Label htmlFor="trn" > Tender Ref. Number </Label>
+                                <Input type="text" id="trn" placeholder="00h00" />
+                            </FormGroup>
                         </Col>
                         <Col sm="3">
-                            <Label htmlFor="street" > Status </Label>
+                            <FormGroup>
+                                <Label htmlFor="trn_val" > Estimated Tender Value </Label>
+                                <Input type="text" id="trn_val" placeholder="R0.00" />
+                            </FormGroup>
+                        </Col>
+                        <Col sm="3">
+                            <FormGroup>
+                                <Label htmlFor="status" > Status </Label>
+                                <Input type="text" id="status" placeholder="00h00" />
+                            </FormGroup>
                         </Col>
                     </Row>
                     <Row>
                         <Col sm="3">
-                            <Label htmlFor="street" >Submitted </Label>
+                            <Label htmlFor="submitted" >Submitted </Label>
+                            <Input type="text" id="description" placeholder="Enter client" />
                         </Col>
                         <Col sm="3">
                             <FormGroup>
-                                <Label htmlFor="time" > Probability </Label>
+                                <Label htmlFor="prob" > Probability </Label>
+                                <Input type="text" id="prob" placeholder="0%" />
                             </FormGroup>
                         </Col>
                         <Col sm="3">
-                            <Label htmlFor="street" > Technical Functionality </Label>
+                            <FormGroup>
+                                <Label htmlFor="tech_func" > Technical Functionality </Label>
+                                <Input type="text" id="tech_func" placeholder="Functional Description" />
+                            </FormGroup>
                         </Col>
                         <Col sm="3">
-                            <Label htmlFor="street" > Expected Order Placement </Label>
+                            <FormGroup>
+                                <Label htmlFor="ex_or_pl" > Expected Order Placement </Label>
+                                <Input type="text" id="ex_or_pl" placeholder="With Whom?" />
+                            </FormGroup>
                         </Col>
                     </Row>
                     <FormGroup >
-                        <Label htmlFor="country" > Comments </Label>
+                        <Label htmlFor="comment" > Comments </Label>
+                        <Input type="text" id="comment" placeholder="Enter Comment" />
                     </FormGroup>
-                    </CardBody>
-                    </Card>
                 </Col>
             </Row>
         );
