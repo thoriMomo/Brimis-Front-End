@@ -3,11 +3,11 @@ import React, {
 } from 'react';
 import { Col, ListGroup, ListGroupItem, Row, } from 'reactstrap';
 import { connect } from "react-redux";
-import { addArticle } from "../../redux/actions/index"
+import { getContactDetails } from "../../redux/actions/index"
 
 const mapDispatchToProps = dispatch => {
     return {
-        addArticle: article => dispatch(addArticle(article))
+        getContactDetails: contactDetails => dispatch(getContactDetails(contactDetails))
     };
 };
 
@@ -25,7 +25,7 @@ class ContactList extends Component {
     update(firstName, lastName, mobileContact, email) {
         console.log(firstName);
         const contactID = 100;
-        this.props.addArticle({contactID, firstName, lastName, mobileContact, email});
+        this.props.getContactDetails({contactID, firstName, lastName, mobileContact, email});
         this.setState({firstName: firstName});
     }
 

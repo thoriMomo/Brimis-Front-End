@@ -2,6 +2,15 @@ import React, {
     Component
 } from 'react';
 import { Col, ListGroup, ListGroupItem, Row, } from 'reactstrap';
+import {
+  getAccountDetails
+} from "../../redux/actions/index"
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getAccountDetails: accountDetails => dispatch(getAccountDetails(accountDetails))
+  };
+};
 
 
 class AccountList extends Component {
@@ -10,7 +19,23 @@ class AccountList extends Component {
         super();
         this.state = {
             list: [],
+            firstName: "",
         }
+    }
+
+    update(firstName, lastName, mobileContact, email) {
+        console.log(firstName);
+        const contactID = 100;
+        this.props.getContactDetails({
+            contactID,
+            firstName,
+            lastName,
+            mobileContact,
+            email
+        });
+        this.setState({
+            firstName: firstName
+        });
     }
 
     componentDidMount() {
@@ -35,7 +60,18 @@ class AccountList extends Component {
     
     render() {
         const view = this.state.list.map((item, index) =>
-            <ListGroupItem key={index} tag="a" href="#/accounts/details">{item.client} {item.contact}
+            < ListGroupItem key = {
+              index
+            }
+            tag = "a"
+            href = "#/accounts/details"
+            onClick = {
+              () => this.update(item.firstName, item.lastName, item.mobileContact, item.email)
+            } > {
+              item.client
+            } {
+              item.contact
+            }
                 <div className="card-header-actions">
                     <a href="#" rel="noreferrer noopener" className="card-header-action">
                         <small className="text-muted">delete</small>
