@@ -2,15 +2,33 @@ import React, {
     Component
 } from 'react';
 import { Col, ListGroup, ListGroupItem, Row, } from 'reactstrap';
+//import { connect } from 'net';
+import { connect } from "react-redux";
+import { getLeadDetails } from "../../redux/actions/index"
 
+const mapDispatchToProps = dispatch => {
+    return {
+        getContactDetails: leadDetails => dispatch(getLeadDetails(leadDetails))
+    };
+};
 
 class LeadsList extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+
         this.state = {
             list: [],
+            clientContact: "",
         }
+    }
+
+update(client, createdBy, clientContact) {
+        console.log(clientContact);
+        // const contactID = 1;
+        // this.props.getLeadDetails({client , createdBy, clientContact});
+        getLeadDetails({client , createdBy, clientContact});
+        this.setState({clientContact: clientContact});
     }
 
     componentDidMount() {
@@ -18,29 +36,32 @@ class LeadsList extends Component {
     }
 
     fetchPost() {
-
         let fetchList = [];
         fetch('https://brimis-crm-backend.herokuapp.com/crm/leads/')
-            .then(res => {
-                return res.json();
+        .then(res => {
+            return res.json();
+        })
+        .then(data => {
+            fetchList = data.map((listItem) => {
+                console.log(listItem)
+                return listItem;
             })
-            .then(data => {
-                fetchList = data.res.map((listItem) => {
-                    return listItem
-                })
-            })
-            .catch(err => {
-                console.log(err);
-            });
-            console.log(fetchList);
+            console.log(fetchList)
+        })
+        .then(() => {
             this.setState({
                 list: fetchList,
             });
+        })
+        .catch(err => {
+            console.log(err);
+        });
     }
 
     render() {
         const view = this.state.list.map((item, index) =>
-            <ListGroupItem key={index} tag="a" href="#/leads/details"> {item.client} - {item.clientContact}
+            <ListGroupItem key={index} tag="a" href="#/leads/details" onClick={() => this.update(item.client.name, item.createdBy.username, item.clientContact.firstName)}> {item.client.name} | {item.clientContact.firstName} {item.clientContact.lastName}
+            {console.log("printing out list in render:" + this.state.list)}
                 <div className="card-header-actions">
                     <a href="#" rel="noreferrer noopener" className="card-header-action">
                         <small className="text-muted">delete</small>
@@ -65,4 +86,6 @@ class LeadsList extends Component {
     }
 }
 
-export default LeadsList;
+const List = connect(null, mapDispatchToProps)(LeadsList)
+
+export default List;

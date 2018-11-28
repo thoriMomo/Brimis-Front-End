@@ -25,7 +25,7 @@ class ContactList extends Component {
     update(firstName, lastName, mobileContact, email) {
         console.log(firstName);
         const contactID = 100;
-        this.props.getContactDetails({contactID, firstName, lastName, mobileContact, email});
+        getContactDetails({contactID, firstName, lastName, mobileContact, email});
         this.setState({firstName: firstName});
     }
 
