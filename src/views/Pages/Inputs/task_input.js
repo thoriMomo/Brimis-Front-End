@@ -13,6 +13,8 @@ import {
 }
     from 'reactstrap';
 
+// import DatePicker from "react-datepicker";
+// import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 import Select from 'react-select';
 
@@ -30,6 +32,7 @@ class TaskInput extends Component {
         this.toggle = this.toggle.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleInputs = this.handleInputs.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.state = {
             activeTab: '1',
             dropdownOpen: new Array(6).fill(false),
@@ -44,9 +47,16 @@ class TaskInput extends Component {
             isCompleted: '',
             selectedCategory: null,
             selectedClient: null,
+            startDate: new Date(),
         };
     }
 
+    handleChange(date) {
+        this.setState({
+          startDate: date
+        });
+      }
+      
     toggle(tab) {
         if (this.state.activeTab !== tab) {
             this.setState({
@@ -162,7 +172,7 @@ class TaskInput extends Component {
                         <Row>
                             <Col sm="4">
                                 <Label htmlFor="due" > Due: </Label>
-                                <Input type="text" id="dueDate" placeholder="DD/MM/YYYY" onChange={this.handleInputs("dateDue")} />
+                                {/* <DatePicker selected={this.state.startDate} onChange={this.handleChange}/> */}
                             </Col>
                             <Col sm="4">
                                 <Label htmlFor="time" > Time: </Label>

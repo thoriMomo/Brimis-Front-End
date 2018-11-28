@@ -9,12 +9,12 @@ import {
 import { connect } from "react-redux";
 
 const mapStateToProps = state => {
-    return { articles: state.articles };
+    return { contactDetails: state.contactDetails };
 }
 
-const AddValue = ({ articles }) => (
+const AddValue = ({ contactDetails }) => (
     <CardBody>
-            {articles.map(el => (
+            {contactDetails.map(el => (
                 <div key={el.contactID}>                
                     <FormGroup row className="my-0" >
                         <Col xs="6">

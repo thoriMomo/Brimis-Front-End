@@ -29,14 +29,33 @@ class Leads extends Component {
     this.toggle = this.toggle.bind(this);
     this.toggleModals = this.toggleModals.bind(this);
     this.toggleCustom = this.toggleCustom.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.submitHandler = this.submitHandler.bind(this);
 
     this.state = {
       activeTab: '1',
       dropdownOpen: new Array(6).fill(false),
       modal: false,
       custom: [false, false],
+      name_got: "",
     };
   }
+
+  submitHandler(evt){
+    evt.preventDefault();
+
+    this.props.handlerFromParent(this.state.name_got);
+
+    this.setState({
+        name_got: ''
+    });
+}
+
+  handleChange() {
+    this.setState({
+        name_got: "Eureka!"
+    })
+}
 
   toggle(tab) {
     if (this.state.activeTab !== tab) {
@@ -45,6 +64,11 @@ class Leads extends Component {
       });
     }
   }
+
+  onUpdate = (name) => {
+    //this.name_got= name,
+    console.log("lead: " + this.name_got);
+}
 
   toggleDrop(tab) {
     const newArray = this.state.dropdownOpen.map((element, index) => {
@@ -119,7 +143,7 @@ class Leads extends Component {
                     <Button type="submit" size="sm" color="primary" > < i className="fa fa-user" > </i>Search</Button>
                   </FormGroup>
                 </Form>
-                <LeadsList />
+                <LeadsList onUpdate={this.onUpdate}/>
               </TabPane>
               <TabPane tabId="2" >
                 <CreateLead />
