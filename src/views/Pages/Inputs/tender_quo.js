@@ -160,7 +160,7 @@ class TenderQuo extends Component {
                 <Col>
                     <Row>
                         <Col sm="3">
-                            <Label htmlFor="street" > Client </Label>
+                            <Label htmlFor="client" > Client </Label>
                             <Select
                                 value={selectedClient}
                                 onChange={this.handleClient}
@@ -186,19 +186,19 @@ class TenderQuo extends Component {
                         <Col sm="3">
                             <FormGroup>
                                 <Label htmlFor="deadline" > Deadline </Label>
-                                <Input type="text" id="deadline" placeholder="DD/MM/YYYY" onChange={this.handleInputs("deadline")} />
+                                <Input type="date" id="deadline" placeholder="DD/MM/YYYY" onChange={this.handleInputs("deadline")} />
                             </FormGroup>
                         </Col>
                         <Col sm="3">
                             <FormGroup>
                                 <Label htmlFor="time" > Time </Label>
-                                <Input type="text" id="time" placeholder="00h00" onChange={this.handleInputs("time")} />
+                                <Input type="time" id="time" placeholder="00h00" onChange={this.handleInputs("time")} />
                             </FormGroup>
                         </Col>
                         <Col sm="3">
                             <FormGroup>
                                 <Label htmlFor="enq_date" > Enquiry Date </Label>
-                                <Input type="text" id="enq_date" placeholder="DD/MM/YYYY" onChange={this.handleInputs("enquiryDate")} />
+                                <Input type="date" id="enq_date" placeholder="DD/MM/YYYY" onChange={this.handleInputs("enquiryDate")} />
                             </FormGroup>
                         </Col>
                     </Row>
@@ -206,13 +206,13 @@ class TenderQuo extends Component {
                         <Col sm="3">
                             <FormGroup>
                                 <Label htmlFor="clarification" >Clarification Date </Label>
-                                <Input type="text" id="clarification" placeholder="DD/MM/YYYY" onChange={this.handleInputs("clarificationDate")} />
+                                <Input type="date" id="clarification" placeholder="DD/MM/YYYY" onChange={this.handleInputs("clarificationDate")} />
                             </FormGroup>
                         </Col>
                         <Col sm="3">
                             <FormGroup>
                                 <Label htmlFor="trn" > Tender Ref. Number </Label>
-                                <Input type="text" id="trn" placeholder="00h00" onChange={this.handleInputs("trn")} />
+                                <Input type="text" id="trn" placeholder="RFQ" onChange={this.handleInputs("trn")} />
                             </FormGroup>
                         </Col>
                         <Col sm="3">

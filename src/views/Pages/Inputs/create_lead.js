@@ -97,6 +97,7 @@ class CreateLead extends Component {
     }
 
     handleClient = (selectedClient) => {
+
         this.setState({ selectedClient });
         console.log(`Client selected:`, selectedClient);
     }
@@ -113,18 +114,20 @@ class CreateLead extends Component {
     handleClick() {
 
         axios.post('https://brimis-crm-backend.herokuapp.com/crm/leads/create/', {
-            client: this.client,
-            createdBy: "test",
-            dateCreated: "01-01-1970",
-            clientContact: "",
-            feedback: "",
+            client: this.state.selectedClient,
+            createdBy: "zen",
+            // dateCreated: "01-01-1970",
+            clientContact: this.state.selectedContact
+            // feedback: "",
         })
             .then(function (response) {
+                // console.log(this.state.selectedClient);
                 console.log(response);
-                console.log("Pushed new task");
+                // console.log("Pushed new task");
             })
-            .catch(function (error) {
-                console.log(error);
+            .catch(function (err) {
+                console.log(this.state.selectedClient);
+                console.log(err);
             });
     }
 
@@ -136,7 +139,7 @@ class CreateLead extends Component {
                 <Col>
                         <Row>
                             <Col sm="4">
-                                <Label htmlFor="street" > Client </Label>
+                                <Label htmlFor="clients" > Client </Label>
                                 <Select
                                     value={selectedClient}
                                     onChange={this.handleClient}
@@ -144,7 +147,7 @@ class CreateLead extends Component {
                                 />
                             </Col>
                             <Col sm="4">
-                                <Label htmlFor="street" > Contact Person </Label>
+                                <Label htmlFor="contact" > Contact Person </Label>
                                 <Select
                                     value={selectedContact}
                                     onChange={this.handleContact}

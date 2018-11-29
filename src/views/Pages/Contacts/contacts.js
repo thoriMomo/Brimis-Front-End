@@ -106,10 +106,11 @@ class Contacts extends Component {
                         <TabPane tabId = "1" >
                             <Form action = "" method = "post" className = "form-horizontal">
                                 <FormGroup row>
-                                    <Col sm = "5">
-                                        <Input type = "text" placeholder = "Search" />
+                                    <Col sm = "12">
+                                        <Input type="search" name="search" id="taskSearch" placeholder="Search contacts" />
+                                        {/* <Input type = "text" placeholder = "Search" /> */}
                                     </Col>
-                                    <Button type = "submit" size = "sm" color = "primary" > < i className = "fa fa-user" > </i>Search</Button>
+                                    {/* <Button type = "submit" size = "sm" color = "primary" > < i className = "fa fa-user" > </i>Search</Button> */}
                                 </FormGroup>
                             </Form>
                             <ContactList onUpdate={this.onUpdate}/>

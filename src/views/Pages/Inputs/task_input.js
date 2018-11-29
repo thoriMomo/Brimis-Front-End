@@ -161,7 +161,7 @@ class TaskInput extends Component {
                                 </FormGroup>
                             </Col>
                             <Col sm="4">
-                                <Label htmlFor="due" > Client </Label>
+                                <Label htmlFor="client" > Client </Label>
                                 <Select
                                     value={selectedClient}
                                     onChange={this.handleClient}
@@ -171,12 +171,12 @@ class TaskInput extends Component {
                         </Row>
                         <Row>
                             <Col sm="4">
-                                <Label htmlFor="due" > Due: </Label>
-                                {/* <DatePicker selected={this.state.startDate} onChange={this.handleChange}/> */}
+                                <Label for="timeDue">Time Due</Label>
+                                <Input type="time" name="time" id="timeDue" placeholder="Time Due" />
                             </Col>
                             <Col sm="4">
-                                <Label htmlFor="time" > Time: </Label>
-                                <Input type="text" id="time" placeholder="00h00" onChange={this.handleInputs("time")} />
+                                <Label for="date">Date</Label>
+                                <Input type="date" name="date" id="dueDate" placeholder="Due Date" />
                             </Col>
                             <Col sm="4">
                                 <Label htmlFor="category" > Category: </Label>

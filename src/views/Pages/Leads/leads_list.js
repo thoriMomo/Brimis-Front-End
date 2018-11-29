@@ -43,10 +43,8 @@ update(client, createdBy, clientContact) {
         })
         .then(data => {
             fetchList = data.map((listItem) => {
-                console.log(listItem)
                 return listItem;
             })
-            console.log(fetchList)
         })
         .then(() => {
             this.setState({

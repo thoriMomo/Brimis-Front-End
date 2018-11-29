@@ -44,12 +44,12 @@ class LeadsDetails extends Component {
                                     <Label htmlFor="country" > Lead Description </Label>
                                 </FormGroup>
                             </Row>
-                            <div id="exampleAccordion" data-children=".item">
+                            <div id="taskAccordion" data-children=".item">
                                 <div className="item">
                                     <Button className="m-0 p-0" color="link" onClick={() => this.toggleCustom(0)} aria-expanded={this.state.custom[0]} aria-controls="exampleAccordion1">
                                         Create Task
                                     </Button>
-                                    <Collapse isOpen={this.state.custom[0]} data-parent="#exampleAccordion" id="exampleAccordion1">
+                                    <Collapse isOpen={this.state.custom[0]} data-parent="#taskAccordion" id="exampleAccordion1">
                                         <TaskInput />
                                     </Collapse>
                                     <p className="mb-3">
