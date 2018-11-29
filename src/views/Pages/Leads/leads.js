@@ -9,6 +9,7 @@ import {
   FormGroup,
   Button,
   Input, Collapse,
+  Label,
   Nav,
   NavItem,
   NavLink,
@@ -67,6 +68,7 @@ class Leads extends Component {
 
   onUpdate = (name) => {
     //this.name_got= name,
+    fetch('https://brimis-crm-backend.herokuapp.com/crm/leads/?' + name)
     console.log("lead: " + this.name_got);
 }
 
@@ -135,12 +137,16 @@ class Leads extends Component {
               this.state.activeTab
             } >
               <TabPane tabId="1" >
-                <Form action="" method="post" className="form-horizontal">
+                <Form action="" method="get" className="form-horizontal">
                   <FormGroup row>
-                    <Col sm="7">
+                  <Col sm="12">
+                    {/* <Label for="leadSearch">Search for Lead</Label> */}
+                    <Input type="search" name="search" id="leadSearch" placeholder="Search Leads" />
+                    </Col>
+                    {/* <Col sm="7">
                       <Input type="text" placeholder="Search" />
                     </Col>
-                    <Button type="submit" size="sm" color="primary" > < i className="fa fa-user" > </i>Search</Button>
+                    <Button type="submit" size="sm" color="primary" > < i className="fa fa-user" > </i>Search</Button> */}
                   </FormGroup>
                 </Form>
                 <LeadsList onUpdate={this.onUpdate}/>

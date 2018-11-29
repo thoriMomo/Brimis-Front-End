@@ -43,14 +43,19 @@ class AccountList extends Component {
     }
 
     fetchPost() {
-
+        let fetchList = [];
         fetch('https://brimis-crm-backend.herokuapp.com/crm/clientcontacts/')
             .then(res => {
                 return res.json();
             })
             .then(data => {
+                fetchList = data.map((listItem) => {
+                    return listItem;
+                })
+            })
+            .then(() => {
                 this.setState({
-                    list: data
+                    list: fetchList
                 });
             })
             .catch(err => {
@@ -60,29 +65,18 @@ class AccountList extends Component {
     
     render() {
         const view = this.state.list.map((item, index) =>
-            < ListGroupItem key = {
-              index
-            }
-            tag = "a"
-            href = "#/accounts/details"
-            onClick = {
-              () => this.update(item.firstName, item.lastName, item.mobileContact, item.email)
-            } > {
-              item.client
-            } {
-              item.contact
-            }
-                <div className="card-header-actions">
-                    <a href="#" rel="noreferrer noopener" className="card-header-action">
-                        <small className="text-muted">delete</small>
-                    </a>
-                </div>
-                <div className="card-header-actions">
-                    <a href="#" rel="noreferrer noopener" className="card-header-action">
-                        <small className="text-muted">edit</small>
-                    </a>
-                </div>
-            </ListGroupItem>
+        <ListGroupItem key={index} tag="a" href="#/accounts/details" onClick={() => this.update(item.contact.firstName, item.contact.lastName, item.contact.mobileContact, item.contact.email)}> {item.client.name} | {item.contact.firstName} {item.contact.lastName}
+            <div className="card-header-actions">
+                <a href="#" rel="noreferrer noopener" className="card-header-action">
+                    <small className="text-muted">delete</small>
+                </a>
+            </div>
+            <div className="card-header-actions">
+                <a href="#" rel="noreferrer noopener" className="card-header-action">
+                    <small className="text-muted">edit</small>
+                </a>
+            </div>
+        </ListGroupItem>
         )
         return (
             <Row>

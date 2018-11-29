@@ -192,14 +192,14 @@ class GeneralQuo extends Component {
                     <Row>
                         <Col sm="3">
                             <FormGroup>
-                                <Label htmlFor="deadline" > Deadline </Label>
-                                <Input type="text" id="deadline" placeholder="DD/MM/YYYY" onChange={this.handleInputs("deadline")}/>
+                                <Label for="deadline"> DeadLine </Label>
+                                <Input type="date" name="deadline" id="deadLine" placeholder="DD/MM/YY" onChange={this.handleInputs("deadline")}/>
                             </FormGroup>
                         </Col>
                         <Col sm="3">
                             <FormGroup>
-                                <Label htmlFor="time" > Time </Label>
-                                <Input type="text" id="time" placeholder="00h00" onChange={this.handleInputs("time")}/>
+                                <Label for="time">Time </Label>
+                                <Input type="time" name="time" id="time" placeholder="00h00" onChange={this.handleInputs("time")}/>
                             </FormGroup>
                         </Col>
                         <Col sm="3">
