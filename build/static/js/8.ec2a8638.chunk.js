@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[8],{437:function(e,t,n){"use strict";n.r(t);var a=n(7),c=n(8),r=n(10),u=n(9),i=n(11),o=n(1),p=n.n(o),l=function(e){function t(){return Object(a.a)(this,t),Object(r.a)(this,Object(u.a)(t).apply(this,arguments))}return Object(i.a)(t,e),Object(c.a)(t,[{key:"render",value:function(){return p.a.createElement("div",null,p.a.createElement("h3",null," Opportunity Page "))}}]),t}(o.Component);t.default=l}}]);
+//# sourceMappingURL=8.ec2a8638.chunk.js.map

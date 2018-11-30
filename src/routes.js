@@ -87,24 +87,8 @@ const TenQuotes = Loadable({
   loading: Loading,
 });
 
-const Login = Loadable({
-  loader: () => import('./views/Pages/Login/Login'),
-  loading: Loading,
-});
-
-const Register = Loadable({
-  loader: () => import('./views/Pages/Register/Register'),
-  loading: Loading,
-});
-
 const routes = [
-  { path: '/login', exact: true, name: 'Login', component: DefaultLayout },
-  { path: '/login', name: 'Login', component: Login },
-
-  { path: '/register', exact: true, name: 'Register', component: DefaultLayout },
-  { path: '/register', name: 'Register', component: Register },
-
-  { path: '/dashboard', exact: true, name: 'Home', component: DefaultLayout },
+  { path: '/', exact: true, name: 'Home', component: DefaultLayout },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
 
   { path: '/contacts', exact: true, name: 'Contacts', component: Contacts },
