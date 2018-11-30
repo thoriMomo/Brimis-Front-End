@@ -1,7 +1,30 @@
 import React, { Component } from 'react';
-import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, Media, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+// import { DefaultFooter } from '../../../containers/DefaultLayout/DefaultFooter';
+import { AppFooter } from '@coreui/react';
+
+import { logo } from '../../../assets/img/brand/favicon.png'
+import { Dashboard } from '../../Dashboard/Dashboard';
 
 class Login extends Component {
+  constructor(props) {
+    super(props);
+
+    this.routeChange = this.routeChange.bind(this);
+    this.state = {
+      signIn: false,
+      }
+  };
+
+  routeChange(){
+    let path = `/dashboard`;
+    this.props.history.push(path);
+    }
+
+  logIn(){
+
+  }
+
   render() {
     return (
       <div className="app flex-row align-items-center">
@@ -32,7 +55,7 @@ class Login extends Component {
                       </InputGroup>
                       <Row>
                         <Col xs="6">
-                          <Button color="primary" className="px-4">Login</Button>
+                          <Button color="danger" onClick={this.routeChange}>Login</Button>
                         </Col>
                         <Col xs="6" className="text-right">
                           <Button color="link" className="px-0">Forgot password?</Button>
@@ -41,13 +64,12 @@ class Login extends Component {
                     </Form>
                   </CardBody>
                 </Card>
-                <Card className="text-white bg-primary py-5 d-md-down-none" style={{ width: 44 + '%' }}>
+                <Card className="text-white bg-red py-5 d-md-down-none" style={{ width: 44 + '%' }}>
                   <CardBody className="text-center">
                     <div>
                       <h2>Sign up</h2>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.</p>
-                      <Button color="primary" className="mt-3" active>Register Now!</Button>
+                      <p>Please contact System Administrator for Registration</p>
+                      <Button color="" className="mt-3" active>Register Now!</Button>
                     </div>
                   </CardBody>
                 </Card>
@@ -55,6 +77,12 @@ class Login extends Component {
             </Col>
           </Row>
         </Container>
+        <AppFooter>
+        {/* <React.Fragment>
+        <span><a href="#">Brimis Engineering CRM</a> &copy; 2018</span>
+        <span className="ml-auto">Created by <a href="#">WeThinkCode_ Greater Wolf Pack</a></span>
+      </React.Fragment> */}
+        </AppFooter>
       </div>
     );
   }
