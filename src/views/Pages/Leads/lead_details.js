@@ -2,7 +2,7 @@ import React, {
     Component
 } from 'react';
 import { Col, Row, Card, CardBody, CardHeader, Badge, Button, Collapse, Label, FormGroup} from 'reactstrap';
-import TaskInput from '../Inputs/task_input'
+import TaskInput from '../Inputs/task_input';
 
 class LeadsDetails extends Component {
 
@@ -35,13 +35,13 @@ class LeadsDetails extends Component {
                         <CardBody>
                             <Row>
                                 <Col sm="3">
-                                    <Label htmlFor="street" > Company </Label>
+                                    <Label htmlFor="company" > Company Name </Label>
                                 </Col>
                                 <Col sm="3">
-                                    <Label htmlFor="street" > Contact Person </Label>
+                                    <Label htmlFor="contact person" > Contact Person </Label>
                                 </Col>
                                 <FormGroup >
-                                    <Label htmlFor="country" > Lead Description </Label>
+                                    <Label htmlFor="description" > Lead Description </Label>
                                 </FormGroup>
                             </Row>
                             <div id="taskAccordion" data-children=".item">

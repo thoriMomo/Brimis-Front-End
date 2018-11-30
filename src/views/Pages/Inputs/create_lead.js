@@ -11,7 +11,7 @@ import {
     Dropdown, DropdownItem, DropdownMenu, DropdownToggle,
 }
     from 'reactstrap';
-import axios from "axios"
+import axios from 'axios';
 import Select from 'react-select';
 
 class CreateLead extends Component {
@@ -35,6 +35,8 @@ class CreateLead extends Component {
             }],
             selectedContact: "",
             selectedClient: "",
+            // clientsArr: [],
+            // contactsArr: [],
         };
     }
 
@@ -50,6 +52,7 @@ class CreateLead extends Component {
                 return res.json();
             })
             .then(data => {
+                // let fList = data.map((theList) => {return theList})
                 fetchList = data.map((listItem) => {
                     return listItem
                 })
@@ -62,8 +65,8 @@ class CreateLead extends Component {
                 let listCon = [{ value: "", label: ""},];
 
                 for (var i = 0; i < fetchList.length; i++) {
-                    listArr[i] = { value: fetchList[i].client["name"], label: fetchList[i].client["name"] };
-                    listCon[i] = { value: fetchList[i].contact.firstName, label: fetchList[i].contact.firstName,}
+                    listArr[i] = { value: fetchList[i].client["id"], label: fetchList[i].client["name"] };
+                    listCon[i] = { value: fetchList[i].contact["id"], label: fetchList[i].contact.firstName,}
                     console.log(listArr[i]["value"]);
                 }
                 this.setState({
@@ -93,13 +96,12 @@ class CreateLead extends Component {
 
     handleContact = (selectedContact) => {
         this.setState({ selectedContact });
-        console.log(`Category selected:`, selectedContact);
+        console.log(`Category selected:`, selectedContact["value"]);
     }
 
     handleClient = (selectedClient) => {
-
         this.setState({ selectedClient });
-        console.log(`Client selected:`, selectedClient);
+        console.log(`Client selected:`, selectedClient["value"]);
     }
 
     handleInputs(key) {
@@ -112,23 +114,23 @@ class CreateLead extends Component {
     }
 
     handleClick() {
-
+        let clnt = "";
         axios.post('https://brimis-crm-backend.herokuapp.com/crm/leads/create/', {
-            client: this.state.selectedClient,
-            createdBy: "zen",
-            // dateCreated: "01-01-1970",
-            clientContact: this.state.selectedContact
-            // feedback: "",
+            client: this.state.selectedClient["value"],//this.state.selectedClient['value'],
+            createdBy: 1,
+            clientContact: this.state.selectedContact["value"]
+            // feedback: ""
         })
-            .then(function (response) {
-                // console.log(this.state.selectedClient);
-                console.log(response);
-                // console.log("Pushed new task");
-            })
-            .catch(function (err) {
-                console.log(this.state.selectedClient);
-                console.log(err);
-            });
+        .then (function (){
+            clnt = this.state.selectedClient
+            console.log(clnt);
+        })
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (err) {
+            console.log(err.response);
+        });
     }
 
     render() {
@@ -137,32 +139,32 @@ class CreateLead extends Component {
         return (
             <Row>
                 <Col>
-                        <Row>
-                            <Col sm="4">
-                                <Label htmlFor="clients" > Client </Label>
-                                <Select
-                                    value={selectedClient}
-                                    onChange={this.handleClient}
-                                    options={this.state.clientlist}
-                                />
-                            </Col>
-                            <Col sm="4">
-                                <Label htmlFor="contact" > Contact Person </Label>
-                                <Select
-                                    value={selectedContact}
-                                    onChange={this.handleContact}
-                                    options={this.state.contactList}
-                                />
-                            </Col>
-                        </Row>
-                    <FormGroup >
-                        <Label htmlFor="country" > Lead Feedback </Label>
-                        <Input type="text" id="country" placeholder="Enter Feedback" onChange={this.handleInputs("feedback")}/>
-                    </FormGroup>
+                    <Row>
+                        <Col sm="4">
+                            <Label htmlFor="clients" > Client </Label>                                    
+                            <Select
+                                value={selectedClient}
+                                onChange={this.handleClient}
+                                options={this.state.clientlist}>
+                            </Select>
+                        </Col>
+                        <Col sm="4">
+                            <Label htmlFor="contact" > Contact Person </Label>
+                            <Select
+                                value={selectedContact}
+                                onChange={this.handleContact}
+                                options={this.state.contactList}
+                            />
+                        </Col>
+                    </Row>
+                <FormGroup >
+                    <Label htmlFor="country" > Lead Notes </Label>
+                    <Input type="text" id="country" placeholder="Enter A Note" onChange={this.handleInputs("feedback")}/>
+                </FormGroup>
                     <Button type="submit" size="sm" color="primary" onClick={this.handleClick} > < i className="fa fa-user" > </i>Submit</Button >
                     <Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Reset</Button>
-                </Col>
-            </Row>
+            </Col>
+        </Row>
         );
     }
 }

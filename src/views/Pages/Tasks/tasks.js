@@ -105,7 +105,7 @@ class Tasks extends Component {
                         this.state.activeTab
                     } >
                         <TabPane tabId="1" >
-                            <Form action="" method="post" className="form-horizontal">
+                            <Form >
                                 <FormGroup row>
                                     <Col sm="12">
                                         {/* <Label for="taskSearch">Search</Label> */}
@@ -117,7 +117,7 @@ class Tasks extends Component {
                             <TaskList />
                         </TabPane>
                         <TabPane tabId="2" >
-                            <Form action="" method="post" className="form-horizontal">
+                            <Form >
                                 <FormGroup row>
                                     <Col sm="12">
                                         <Input type="search" name="search" id="taskSearch" placeholder="Search overdue tasks" />
